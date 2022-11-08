@@ -1,26 +1,16 @@
-import json
-
 import pandas as pd
 
-from torch_utils import StructDataset
 from .model import Model
-from sklearn import preprocessing
+from torch_utils import StructDataset
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
-
-from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
-from sklearn.metrics import recall_score
-from sklearn.metrics import accuracy_score
-
-from torch.utils.data import Dataset, DataLoader
 
 
-class XGBoost(Model):
+class RandomForest(Model):
     def __init__(self):
         self.dataset = None
-        self.randomForest = RandomForestClassifier()  # TODO
+        self.randomForest = RandomForestClassifier()
         self.acc = float()
 
     def fit(self, parameter: dict):
