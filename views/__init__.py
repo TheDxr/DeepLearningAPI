@@ -1,6 +1,6 @@
-from .machine_learning import MLView
+from .learning import ModelView
 from .test_view import TestView
 from .predict import Predict
-from .data_set import DataSet
+from .dataset import DataSet
 
-__all__ = ["MLView", "TestView", 'Predict', 'DataSet']
+__all__ = ["ModelView", "TestView", 'Predict', 'DataSet']

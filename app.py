@@ -12,11 +12,11 @@ api = Api(app)
 
 
 api.add_resource(TestView, '/')
-api.add_resource(MLView, '/model/train')
+api.add_resource(ModelView, '/model/<string:model_name>')
 api.add_resource(Predict, '/model/predict')
 api.add_resource(DataSet, '/dataset')
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=True)
 

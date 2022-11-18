@@ -5,7 +5,6 @@ from flask_restful import Resource, reqparse, abort
 import os
 import config
 import pandas as pd
-from flask import jsonify
 
 
 class DataSet(Resource):
@@ -31,7 +30,7 @@ class DataSet(Resource):
             data_df = pd.read_csv(data_path)
         except FileNotFoundError:
             abort(403)
-        return jsonify(data_df)
+        return data_df
 
     def delete(self):
         data = self.parser.parse_args()
@@ -41,7 +40,7 @@ class DataSet(Resource):
             data_df = pd.read_csv(data_path)
         except FileNotFoundError:
             abort(403)
-        return jsonify(data_df)
+        return data_df
 
     def put(self):
         data = self.parser.parse_args()

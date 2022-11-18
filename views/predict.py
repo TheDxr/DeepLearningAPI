@@ -1,5 +1,4 @@
 from flask_restful import Resource, reqparse, abort
-from flask import jsonify
 from inference_service import InferenceService
 
 from inference_service import InferenceService
@@ -17,9 +16,9 @@ class Predict(Resource):
         self.parser.add_argument('data', required=True)
         data = self.parser.parse_args()
         data['prediction'] = self.inference.get_prediction(data)
-        return jsonify(data)
+        return data
 
     def get(self):
         self.parser.add_argument('data', type=dict, required=True)
         data = self.parser.parse_args()
-        return jsonify(self.inference.get_prediction(data))
+        return self.inference.get_prediction(data)
