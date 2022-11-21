@@ -36,7 +36,6 @@ class XGBoost(Model):
         self.randomForest.fit(train_x, train_y, sample_weight=weight)
         preds = self.randomForest.predict(train_x)
         self.acc = self.randomForest.score(train_x, train_y)
-
         return classification_report(train_y, preds, output_dict=True)
 
     def load_data(self, dataset: StructDataset):

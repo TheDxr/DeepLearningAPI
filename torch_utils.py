@@ -11,7 +11,7 @@ def get_dataset_from_file(path):
 
 class StructDataset(Dataset):
     def __init__(self, path):
-        self.data = pd.read_csv(path, dtype=int, nrows=5000)  # TODO
+        self.data = pd.read_csv(path, dtype=int, nrows=20000)  # TODO
 
     def __getitem__(self, index):
         return self.data.iloc[index]

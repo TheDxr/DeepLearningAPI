@@ -10,11 +10,13 @@ class InferenceService:
     INSTANCE = None
 
     def __init__(self):
-        self.__model: Model = None
-        self.__result: dict = dict()
-        self.__dataset_path: str = str()
+        self.__model = None
+        self.__model_name= str()
+        self.__result = dict()
+        self.__dataset_path = str()
 
     def __new__(cls, *args, **kwargs):
+        print('new inference service create')
         # 判断类属性是否已经被赋值
         if cls.INSTANCE is None:
             cls.INSTANCE = super().__new__(cls)
@@ -27,6 +29,7 @@ class InferenceService:
         """
         if model_name == config.Models.XGBoost.value:
             self.__model = XGBoost()
+            self.__model_name = model_name
         # 获取数据集
         dataset = torch_utils.get_dataset_from_file(self.__dataset_path)
         # 训练模型
@@ -46,6 +49,9 @@ class InferenceService:
 
     def get_prediction(self, data):
         return self.__model.get_prediction(data)
+
+    def get_model_name(self):
+        return self.__model_name
 
     def solve_dataset(self, dataset_path: str):
         try:

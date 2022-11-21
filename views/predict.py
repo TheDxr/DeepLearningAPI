@@ -21,4 +21,7 @@ class Predict(Resource):
     def get(self):
         self.parser.add_argument('data', type=dict, required=True)
         data = self.parser.parse_args()
-        return self.inference.get_prediction(data)
+        ret = dict()
+        ret['model'] = self.inference.get_model_name()
+        ret['prediction'] = self.inference.get_prediction(data)
+        return ret
