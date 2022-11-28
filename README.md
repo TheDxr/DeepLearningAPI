@@ -1,4 +1,6 @@
-# DeepLearningAPI with pytorch flask
+# DeepLearning API with pytorch and flask
+基于flask打造的深度学习API，帮助你快速发布部署神经网络，
+实现训练或测试模型， 框架目前支持多种机器学习与深度学习模型的构建。
 
 ## 1. 模型训练
 
