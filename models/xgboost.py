@@ -1,26 +1,23 @@
 import json
 
 import pandas as pd
-
 from torch_utils import StructDataset
-from .model import Model
+from .model import  Model
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
-from sklearn.ensemble import RandomForestClassifier
 
+import xgboost as xgb
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import recall_score
 from sklearn.metrics import accuracy_score
 
-from torch.utils.data import Dataset, DataLoader
-
 
 class XGBoost(Model):
     def __init__(self):
         self.dataset = None
-        self.randomForest = RandomForestClassifier()  # TODO
+        self.Xgb = xgb.XGBRFClassifier(learning_rate=0.3, max_leaves=2)  # TODO
         self.acc = float()
 
     def fit(self, parameter: dict):
@@ -33,18 +30,17 @@ class XGBoost(Model):
             if train_y[i] == 1:
                 weight[i] = 1  # 权重调整
         # 训练
-        self.randomForest.fit(train_x, train_y, sample_weight=weight)
-        preds = self.randomForest.predict(train_x)
-        self.acc = self.randomForest.score(train_x, train_y)
-        return classification_report(train_y, preds, output_dict=True)
-
+        self.Xgb.fit(train_x, train_y, sample_weight=weight)
+        preds = self.Xgb.predict(test_x)
+        self.acc = self.Xgb.score(test_x, test_y)
+        return classification_report(test_y, preds, output_dict=True)
     def load_data(self, dataset: StructDataset):
         self.dataset = dataset
 
     def get_prediction(self, data):
         test = pd.DataFrame([data['data']])
         ret = dict()
-        if self.randomForest.predict(test)[0] == 0:
+        if self.Xgb.predict(test)[0] == 0:
             ret['prediction'] = "false"
         else:
             ret['prediction'] = "true"

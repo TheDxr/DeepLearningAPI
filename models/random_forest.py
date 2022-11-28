@@ -1,6 +1,6 @@
 import pandas as pd
 
-from .model import Model
+from .model import  Model
 from torch_utils import StructDataset
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
