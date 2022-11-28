@@ -4,7 +4,7 @@
 
 ## 1. 模型训练
 
-
+### XGBoost训练
 ***Endpoint:***
 
 ```bash
@@ -24,6 +24,7 @@ URL: http://127.0.0.1:5000/model/xgboost
     }
 }
 ```
+随机森林训练 ： http://127.0.0.1:5000/model/random_forest
 
 
 

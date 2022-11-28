@@ -24,10 +24,10 @@ class RandomForest(Model):
                 weight[i] = 1  # 权重调整
         # 训练
         self.randomForest.fit(train_x, train_y, sample_weight=weight)
-        preds = self.randomForest.predict(train_x)
-        self.acc = self.randomForest.score(train_x, train_y)
+        preds = self.randomForest.predict(test_x)
+        self.acc = self.randomForest.score(test_x, test_y)
 
-        return classification_report(train_y, preds, output_dict=True)
+        return classification_report(test_y, preds, output_dict=True)
 
     def load_data(self, dataset: StructDataset):
         self.dataset = dataset

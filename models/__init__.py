@@ -11,7 +11,7 @@ class Models(Enum):
     XGBoost = 'xgboost'
     RandomForest = 'random_forest'
     KNN = 'knn'
-    Kmeans = 'k-means'
+    Kmeans = 'k_means'
 
 
 models_class_dict: dict = {}  # 通过小写名称查找大写

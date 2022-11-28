@@ -6,5 +6,5 @@ pandas
 sklearn
 matplotlib
 xgboost
-pytorch
+torch
 scikit-learn
