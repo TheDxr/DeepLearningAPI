@@ -8,7 +8,6 @@ app.config['BUNDLE_ERRORS'] = True
 api = Api(app)
 
 
-api.add_resource(TestView, '/')
 api.add_resource(ModelView, '/model/<string:model_name>')
 api.add_resource(Predict, '/model/predict')
 api.add_resource(DataSet, '/dataset')
