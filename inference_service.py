@@ -11,10 +11,13 @@ from models.xgboost import XGBoost
 
 
 class InferenceService:
-    __model: Model
-    __result = None
-    __dataset_path: str
     INSTANCE = None
+
+    def __init__(self):
+        self.__model = None
+        self.__result = None
+        self.__model_name = str()
+        self.__dataset_path = str()
 
     def __new__(cls, *args, **kwargs):
         # 判断类属性是否已经被赋值
@@ -28,6 +31,7 @@ class InferenceService:
         """
         :return: 训练情况(string),训练结果(dict)
         """
+        self.__model_name = model_name
         if model_name == config.Models.XGBoost.value:
             self.__model = XGBoost()
         if model_name == config.Models.RandomForest.value:
@@ -67,6 +71,9 @@ class InferenceService:
             self.__dataset_path = closest[0]
         except IndexError as e:
             abort(404, message='该数据集不存在')
+
+    def get_model_name(self):
+        return self.__model_name
 
 
 
