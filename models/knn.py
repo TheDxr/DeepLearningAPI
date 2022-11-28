@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report
 class KNN(Model):
     def __init__(self):
         self.dataset = None
-        #self.knn = neighbors.KNeighborsClassifier(n_neighbors=self.best_k)
+        # self.knn = neighbors.KNeighborsClassifier(n_neighbors=self.best_k)
         self.acc = float()
 
     def best_k(self):
@@ -31,8 +31,8 @@ class KNN(Model):
         return k_error.index(min(k_error))
 
     def fit(self, parameter: dict):
-        best= self.best_k()
-        self.knn=KNeighborsClassifier(n_neighbors=best)
+        best = self.best_k()
+        self.knn = KNeighborsClassifier(n_neighbors=best)
         train_x, test_x = train_test_split(self.dataset.dataframe, test_size=0.2, shuffle=False)
         train_y = train_x.pop('Diabetes_binary')
         test_y = test_x.pop('Diabetes_binary')

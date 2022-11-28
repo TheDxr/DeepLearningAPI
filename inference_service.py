@@ -1,13 +1,11 @@
-
-from models.model import Model
-from flask_restful import abort
 import config
+import models
 import torch_utils
 import os
 import difflib
-from models.random_forest import RandomForest
-from models.knn import KNN
-from models.xgboost import XGBoost
+
+from models import models_list, models_class_dict
+from models import *
 
 
 class InferenceService:
@@ -31,27 +29,29 @@ class InferenceService:
         """
         :return: 训练情况(string),训练结果(dict)
         """
+        if model_name not in models_list:
+            raise ModuleNotFoundError('ModuleNotFoundError')
+
+
         self.__model_name = model_name
-        if model_name == config.Models.XGBoost.value:
-            self.__model = XGBoost()
-        if model_name == config.Models.RandomForest.value:
-            self.__model = RandomForest()
-        if model_name == config.Models.Knn.value:
-            self.__model = KNN()
-        if model_name == config.Models.DeepFM.value:
-            # TODO
-            pass
+
+
+        if model_name in models_list:
+            self.__model = eval(models_class_dict[model_name])()
+
+
         # 获取数据集
         dataset = torch_utils.get_dataset_from_file(self.__dataset_path)
         # 训练模型
         try:
-            self.__model.load_data(dataset)  # TODO
+            self.__model.load_data(dataset)
             result = self.__model.fit(parameter)
+            self.__result = result
         except RuntimeError:
-            return 'fit error', None
-        self.__result = result
-        return 'success', result
-
+            raise RuntimeError('fit error')
+        except FileNotFoundError:
+            raise FileNotFoundError('dataset error')
+        return self.__result
 
     def get_result(self):
         """
@@ -70,7 +70,7 @@ class InferenceService:
             closest: list = difflib.get_close_matches(dataset_path, file_list, n=1)
             self.__dataset_path = closest[0]
         except IndexError as e:
-            abort(404, message='该数据集不存在')
+            raise FileNotFoundError('dataset error')
 
     def get_model_name(self):
         return self.__model_name
