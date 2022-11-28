@@ -1,9 +1,10 @@
 flask
+flask_restful
 torchvision
 numpy
-flask_restful
 pandas
 sklearn
 matplotlib
 xgboost
 pytorch
+scikit-learn

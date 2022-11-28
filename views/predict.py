@@ -1,8 +1,6 @@
 from flask_restful import Resource, reqparse, abort
-from inference_service import InferenceService
 
 from inference_service import InferenceService
-import config
 
 
 class Predict(Resource):

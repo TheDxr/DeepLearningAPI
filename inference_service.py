@@ -1,10 +1,8 @@
 import config
-import models
 import torch_utils
 import os
 import difflib
 
-from models import models_list, models_class_dict
 from models import *
 
 
@@ -24,7 +22,6 @@ class InferenceService:
         # 返回类属性的单例引用
         return cls.INSTANCE
 
-
     def train_model(self, model_name, parameter: dict):
         """
         :return: 训练情况(string),训练结果(dict)
@@ -32,14 +29,9 @@ class InferenceService:
         if model_name not in models_list:
             raise ModuleNotFoundError('ModuleNotFoundError')
 
-
         self.__model_name = model_name
-
-
         if model_name in models_list:
             self.__model = eval(models_class_dict[model_name])()
-
-
         # 获取数据集
         dataset = torch_utils.get_dataset_from_file(self.__dataset_path)
         # 训练模型
@@ -59,10 +51,8 @@ class InferenceService:
         """
         return self.__result
 
-
     def get_prediction(self, data):
         return self.__model.get_prediction(data)
-
 
     def solve_dataset(self, dataset_path: str):
         try:
