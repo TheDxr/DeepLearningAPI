@@ -5,7 +5,7 @@ import config
 
 
 def get_dataset_from_file(path):
-    path = os.path.join(config.dataPath, path)
+    path = os.path.join(config.DATA_PATH, path)
     return StructDataset(path)
 
 

@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "a706991d-0ef5-468e-bdf8-4a15343ff781",
+		"name": "MLApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24218160"
+	},
+	"item": [
+		{
+			"name": "预测",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/model/predict",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"model",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "预测",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": {\r\n        \"HighBP\": 1,\r\n        \"HighChol\": 1,\r\n        \"CholCheck\": 1,\r\n        \"BMI\": 30,\r\n        \"Smoker\": 1,\r\n        \"Stroke\": 1,\r\n        \"HeartDiseaseorAttack\": 1,\r\n        \"PhysActivity\": 1,\r\n        \"Fruits\": 0,\r\n        \"Veggies\": 0,\r\n        \"HvyAlcoholConsump\": 0,\r\n        \"AnyHealthcare\": 1,\r\n        \"NoDocbcCost\": 0,\r\n        \"GenHlth\": 4,\r\n        \"MentHlth\": 0,\r\n        \"PhysHlth\": 20,\r\n        \"DiffWalk\": 1,\r\n        \"Sex\": 1,\r\n        \"Age\": 7,\r\n        \"Education\": 3,\r\n        \"Income\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/model/predict",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"model",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "训练xgboost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataset\": \"diabetes_binary_health_indicators_BRFSS2015.csv\",\r\n    \"parameter\": {\r\n        \"predict\": \"Diabetes_binary\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/model/xgboost",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"model",
+						"xgboost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "训练random_forest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataset\": \"diabetes_binary_health_indicators_BRFSS2015.csv\",\r\n    \"parameter\": {\r\n        \"predict\": \"Diabetes_binary\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/model/random_forest",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"model",
+						"random_forest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "训练kmeans",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataset\":\"diabetes_binary_health_indicators_BRFSS2015.csv\",\r\n    \"parameter\":{\r\n        \"predict\":\"Diabetes_binary\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/model/k_means",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"model",
+						"k_means"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "数据集不存在",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\":\"xgboost\",\r\n    \"dataset\":\"asdasdas\",\r\n    \"parameter\":{\r\n        \"predict\":\"Diabetes_binary\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/model/xgboost",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"model",
+						"xgboost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "数据集",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"test.csv\",\r\n    \"data\": [\r\n        {\r\n            \"address\": \"华山路31号\",\r\n            \"addressExtend\": \"屯溪老街\"\r\n        },\r\n        {\r\n            \"address\": \"金城镇 珠山82号\",\r\n            \"addressExtend\": \"101\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/dataset",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"dataset"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

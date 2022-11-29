@@ -26,12 +26,12 @@ class InferenceService:
         """
         :return: 训练情况(string),训练结果(dict)
         """
-        if model_name not in models_list:
-            raise ModuleNotFoundError('ModuleNotFoundError')
-
-        self.__model_name = model_name
+        # 判断模型名称
         if model_name in models_list:
             self.__model = eval(models_class_dict[model_name])()
+        else:
+            raise ModuleNotFoundError('ModuleNotFoundError')
+        self.__model_name = model_name
         # 获取数据集
         dataset = torch_utils.get_dataset_from_file(self.__dataset_path)
         # 训练模型
@@ -56,7 +56,7 @@ class InferenceService:
 
     def solve_dataset(self, dataset_path: str):
         try:
-            file_list = os.listdir(config.dataPath)
+            file_list = os.listdir(config.DATA_PATH)
             closest: list = difflib.get_close_matches(dataset_path, file_list, n=1)
             self.__dataset_path = closest[0]
         except IndexError as e:

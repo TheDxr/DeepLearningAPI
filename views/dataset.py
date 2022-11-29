@@ -17,14 +17,14 @@ class DataSet(Resource):
         data = self.parser.parse_args()
         data_df = pd.DataFrame(data['data'])
         try:
-            data_df.to_csv(os.path.join(config.dataPath, data['name']), encoding='utf-8', index=False, mode='w')
+            data_df.to_csv(os.path.join(config.DATA_PATH, data['name']), encoding='utf-8', index=False, mode='w')
         except RuntimeError:
             abort(403)
         return {"message": "success"}
 
     def get(self):
         data = self.parser.parse_args()
-        data_path = os.path.join(config.dataPath, data['name'])
+        data_path = os.path.join(config.DATA_PATH, data['name'])
         data_df = pd.DataFrame()
         try:
             data_df = pd.read_csv(data_path)
@@ -34,7 +34,7 @@ class DataSet(Resource):
 
     def delete(self):
         data = self.parser.parse_args()
-        data_path = os.path.join(config.dataPath, data['name'])
+        data_path = os.path.join(config.DATA_PATH, data['name'])
         data_df = pd.DataFrame()
         try:
             data_df = pd.read_csv(data_path)
@@ -44,7 +44,7 @@ class DataSet(Resource):
 
     def put(self):
         data = self.parser.parse_args()
-        data_path = os.path.join(config.dataPath, data['name'])
+        data_path = os.path.join(config.DATA_PATH, data['name'])
         data_df = pd.DataFrame()
         try:
             data_df = pd.read_csv(data_path)
