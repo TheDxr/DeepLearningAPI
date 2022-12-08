@@ -157,3 +157,40 @@ URL: http://127.0.0.1:5000/dataset
 }
 ```
 
+
+## BRFS2015数据集预测效果
+
+### WideDeep网络
+
+```
+              precision    recall  f1-score   support
+	       0       0.88      0.97      0.93     43552
+	       1       0.56      0.21      0.31      7184
+	
+	accuracy                           0.86     50736
+   macro avg       0.72      0.59      0.62     50736
+weighted avg       0.84      0.86      0.84     50736
+```
+### DeepFM网络
+```
+              precision    recall  f1-score   support
+
+           0       0.88      0.97      0.92     43552
+           1       0.53      0.24      0.33      7184
+
+    accuracy                           0.86     50736
+   macro avg       0.71      0.60      0.63     50736
+weighted avg       0.84      0.86      0.84     50736
+```
+### DeepFM在”Census Income”数据集上表现
+```
+              precision    recall  f1-score   support
+   
+       <=50K       0.92      0.82      0.87      4942
+        >50K       0.58      0.79      0.67      1571
+    accuracy                           0.81      6513
+   macro avg       0.75      0.80      0.77      6513
+weighted avg       0.84      0.81      0.82      6513
+```
+
+

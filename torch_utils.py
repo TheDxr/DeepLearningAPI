@@ -6,6 +6,9 @@ import config
 
 def get_dataset_from_file(path):
     path = os.path.join(config.DATA_PATH, path)
+    if 'data_type' == 'form':  # TODO: 增加数据集种类
+        return StructDataset(path)
+
     return StructDataset(path)
 
 
@@ -21,7 +24,7 @@ class StructDataset(Dataset):
 
     @property
     def train_data(self):
-        return
+        return None
 
     @property
     def dataframe(self):

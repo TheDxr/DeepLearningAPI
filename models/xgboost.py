@@ -2,7 +2,7 @@ import json
 
 import pandas as pd
 from torch_utils import StructDataset
-from .model import  Model
+from .model import Model
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
@@ -17,13 +17,17 @@ from sklearn.metrics import accuracy_score
 class XGBoost(Model):
     def __init__(self):
         self.dataset = None
-        self.Xgb = xgb.XGBRFClassifier(learning_rate=0.3, max_leaves=2)  # TODO
+        self.Xgb = xgb.XGBRFClassifier(learning_rate=0.1)  # TODO
         self.acc = float()
 
     def fit(self, parameter: dict):
 
-        train_x, test_x = train_test_split(self.dataset.dataframe, test_size=0.2, shuffle=False)
+        train_x, test_x = train_test_split(self.dataset.dataframe, test_size=0.1, shuffle=False)
         train_y = train_x.pop('Diabetes_binary')
+
+        train_x = self.dataset.dataframe  # TODO
+        train_y = train_x.pop('Diabetes_binary')
+
         test_y = test_x.pop('Diabetes_binary')
         weight = [1] * len(train_y)
         for i in range(0, len(train_y)):
@@ -34,6 +38,7 @@ class XGBoost(Model):
         preds = self.Xgb.predict(test_x)
         self.acc = self.Xgb.score(test_x, test_y)
         return classification_report(test_y, preds, output_dict=True)
+
     def load_data(self, dataset: StructDataset):
         self.dataset = dataset
 
