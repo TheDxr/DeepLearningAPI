@@ -12,6 +12,7 @@ class Models(Enum):
     RandomForest = 'random_forest'
     KNN = 'knn'
     Kmeans = 'k_means'
+    LR = 'linear_regression'
 
 
 models_class_dict: dict = {}  # 通过小写名称查找大写

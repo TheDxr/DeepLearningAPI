@@ -25,9 +25,6 @@ class XGBoost(Model):
         train_x, test_x = train_test_split(self.dataset.dataframe, test_size=0.1, shuffle=False)
         train_y = train_x.pop('Diabetes_binary')
 
-        train_x = self.dataset.dataframe  # TODO
-        train_y = train_x.pop('Diabetes_binary')
-
         test_y = test_x.pop('Diabetes_binary')
         weight = [1] * len(train_y)
         for i in range(0, len(train_y)):
