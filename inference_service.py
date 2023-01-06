@@ -71,8 +71,8 @@ class InferenceService:
         with open(path, "wb") as f:
             pickle.dump(self.__model, f)
 
-    def load_model_from_file(self, name, path='D:/SourceCode/PythonCode/DeepLearningAPI/saves/'):
-        with open(path + name + '.model', "rb") as f:
+    def load_model_from_file(self, path):
+        with open(path, "rb") as f:
             self.__model = pickle.load(f)
 
     def get_prediction_from_saved_model(self, data, path='D:/SourceCode/PythonCode/DeepLearningAPI/saves/test.model'):

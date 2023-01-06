@@ -63,7 +63,35 @@ Method: GET
 Type: RAW
 URL: http://127.0.0.1:5000/model/predict
 ```
-
+### 使用已保存模型
+```json
+{
+    "model": "D:/SourceCode/PythonCode/DeepLearningAPI/saves/test.model",
+    "data": {
+        "HighBP": 1,
+        "HighChol": 1,
+        "CholCheck": 1,
+        "BMI": 30,
+        "Smoker": 1,
+        "Stroke": 1,
+        "HeartDiseaseorAttack": 1,
+        "PhysActivity": 1,
+        "Fruits": 0,
+        "Veggies": 0,
+        "HvyAlcoholConsump": 0,
+        "AnyHealthcare": 1,
+        "NoDocbcCost": 0,
+        "GenHlth": 4,
+        "MentHlth": 0,
+        "PhysHlth": 20,
+        "DiffWalk": 1,
+        "Sex": 1,
+        "Age": 68,
+        "Education": 3,
+        "Income": 1
+    }
+}
+```
 ### 测试样例
 ```json        
 {
