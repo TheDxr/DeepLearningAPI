@@ -36,7 +36,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"data\": {\r\n        \"HighBP\": 1,\r\n        \"HighChol\": 1,\r\n        \"CholCheck\": 1,\r\n        \"BMI\": 30,\r\n        \"Smoker\": 1,\r\n        \"Stroke\": 1,\r\n        \"HeartDiseaseorAttack\": 1,\r\n        \"PhysActivity\": 1,\r\n        \"Fruits\": 0,\r\n        \"Veggies\": 0,\r\n        \"HvyAlcoholConsump\": 0,\r\n        \"AnyHealthcare\": 1,\r\n        \"NoDocbcCost\": 0,\r\n        \"GenHlth\": 4,\r\n        \"MentHlth\": 0,\r\n        \"PhysHlth\": 20,\r\n        \"DiffWalk\": 1,\r\n        \"Sex\": 1,\r\n        \"Age\": 68,\r\n        \"Education\": 3,\r\n        \"Income\": 1\r\n    }\r\n}",
+					"raw": "{\r\n    \"model\": \"xgboost\",\r\n    \"data\": {\r\n        \"HighBP\": 1,\r\n        \"HighChol\": 1,\r\n        \"CholCheck\": 1,\r\n        \"BMI\": 30,\r\n        \"Smoker\": 1,\r\n        \"Stroke\": 1,\r\n        \"HeartDiseaseorAttack\": 1,\r\n        \"PhysActivity\": 1,\r\n        \"Fruits\": 0,\r\n        \"Veggies\": 0,\r\n        \"HvyAlcoholConsump\": 0,\r\n        \"AnyHealthcare\": 1,\r\n        \"NoDocbcCost\": 0,\r\n        \"GenHlth\": 4,\r\n        \"MentHlth\": 0,\r\n        \"PhysHlth\": 20,\r\n        \"DiffWalk\": 1,\r\n        \"Sex\": 1,\r\n        \"Age\": 68,\r\n        \"Education\": 3,\r\n        \"Income\": 1\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,6 +88,38 @@
 					"path": [
 						"model",
 						"xgboost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "训练knn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataset\": \"diabetes_binary_health_indicators_BRFSS2015.csv\",\r\n    \"parameter\": {\r\n        \"predict\": \"Diabetes_binary\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/model/knn",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"model",
+						"knn"
 					]
 				}
 			},

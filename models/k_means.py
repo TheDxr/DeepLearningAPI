@@ -1,6 +1,6 @@
 import pandas as pd
 
-from torch_utils import StructDataset
+from dataset_utils import StructDataset
 from .model import Model
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import classification_report

@@ -1,7 +1,7 @@
 from torch.utils.data import Dataset
 from models.model import Model
 from sklearn.linear_model import LogisticRegression
-from torch_utils import StructDataset
+from dataset_utils import StructDataset
 from sklearn.model_selection import train_test_split, cross_val_score
 
 from sklearn.metrics import classification_report

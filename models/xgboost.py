@@ -1,7 +1,7 @@
 import json
 
 import pandas as pd
-from torch_utils import StructDataset
+from dataset_utils import StructDataset
 from .model import Model
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split

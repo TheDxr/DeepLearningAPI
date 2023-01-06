@@ -1,7 +1,8 @@
 import config
-import torch_utils
+import dataset_utils
 import os
 import difflib
+import pickle
 
 from models import *
 
@@ -33,7 +34,7 @@ class InferenceService:
             raise ModuleNotFoundError('ModuleNotFoundError')
         self.__model_name = model_name
         # 获取数据集
-        dataset = torch_utils.get_dataset_from_file(self.__dataset_path)
+        dataset = dataset_utils.get_dataset_from_file()
         # 训练模型
         try:
             self.__model.load_data(dataset)
@@ -43,6 +44,7 @@ class InferenceService:
             raise RuntimeError('fit error')
         except FileNotFoundError:
             raise FileNotFoundError('dataset error')
+
         return self.__result
 
     def get_result(self):
@@ -52,18 +54,41 @@ class InferenceService:
         return self.__result
 
     def get_prediction(self, data):
+        """
+        利用当前模型做预测
+        :param data: 预测数据
+        :return: 预测结果
+        """
+
         return self.__model.get_prediction(data)
 
-    def solve_dataset(self, dataset_path: str):
-        try:
-            file_list = os.listdir(config.DATA_PATH)
-            closest: list = difflib.get_close_matches(dataset_path, file_list, n=1)
-            self.__dataset_path = closest[0]
-        except IndexError as e:
-            raise FileNotFoundError('dataset error')
+    def save_current_model(self, path='./saves/test.model'):
+        """
+        保存当前模型
+        :param path:
+        :return:
+        """
+        with open(path, "wb") as f:
+            pickle.dump(self.__model, f)
+
+    def load_model_from_file(self, name, path='D:/SourceCode/PythonCode/DeepLearningAPI/saves/'):
+        with open(path + name + '.model', "rb") as f:
+            self.__model = pickle.load(f)
+
+    def get_prediction_from_saved_model(self, data, path='D:/SourceCode/PythonCode/DeepLearningAPI/saves/test.model'):
+        """
+        利用已保存模型做预测
+        :param data: 预测数据
+        :param path: 已训练模型的路径
+        :return: 预测结果
+        """
+        with open(path, "rb") as f:
+            self.__model = pickle.load(f)
+        return self.__model.get_prediction(data)
 
     def get_model_name(self):
+        """
+        获取当前模型名称
+        :return: 模型名称(str)
+        """
         return self.__model_name
-
-
-

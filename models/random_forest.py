@@ -1,7 +1,10 @@
 import pandas as pd
+import joblib
+import pickle
+import logging
 
-from .model import  Model
-from torch_utils import StructDataset
+from .model import Model
+from dataset_utils import StructDataset
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
@@ -48,3 +51,4 @@ class RandomForest(Model):
 
     def load_model(self, path):
         pass
+

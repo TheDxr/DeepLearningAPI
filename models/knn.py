@@ -1,5 +1,5 @@
 from .model import Model
-from torch_utils import StructDataset
+from dataset_utils import StructDataset
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report

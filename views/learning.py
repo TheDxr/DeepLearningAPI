@@ -15,7 +15,6 @@ class ModelView(Resource):
         # 向接口传训练参数
         detail = dict()
         try:
-            self.inference.solve_dataset(data['dataset'])
             detail = self.inference.train_model(model_name, data['parameter'])
         except FileNotFoundError:
             abort(400, message="数据集不存在")
@@ -25,11 +24,4 @@ class ModelView(Resource):
 
     def get(self, model_name):
         abort(403)
-        # if model_name not in config.models:
-        #     abort(404, message="模型名称错误")
-        #
-        # self.parser.add_argument('data', type=dict, required=True)
-        # data = self.parser.parse_args()
-        # return self.inference.get_prediction(data)
 
-        # return {'data': self.inference.get_result()}
